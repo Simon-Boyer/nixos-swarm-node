@@ -1,7 +1,11 @@
 { config, ... }:
-let usernames = ["simon-boyer"]; #Github username
 
 {
+    imports = [
+    # Add usernames
+        ./environment.nix
+    ];
+    
     users.users = map (name : {
         "${name}" = {
             isNormalUser = true;

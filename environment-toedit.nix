@@ -16,6 +16,8 @@ let updateDay = "Sun";
             };
         };
     };
+    usernames = ["simon-boyer"]; #Github username
+
 
 # Actual configuration, no need to edit
 {
