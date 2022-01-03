@@ -1,5 +1,7 @@
 # NixOS Docker Swarm Node Configuration
 
+## WIP
+
 Personnal NixOS configuration for a docker swarm node 
 
 ### Configures:
