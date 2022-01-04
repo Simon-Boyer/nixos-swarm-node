@@ -1,18 +1,17 @@
 { config, ... }:
 
+with (import ./node-config.nix);
 {
-    imports = [
-    # Add usernames
-        ./environment.nix
-    ];
-    
-    users.users = map (name : {
-        "${name}" = {
-            isNormalUser = true;
-            extraGroups = ["wheel" "docker"];
-            openssh.authorizedKeys.keyFiles = [
-                "https://github.com/${name}.keys"
-            ];
-        };
-    }) usernames;
+    users.users = builtins.listToAttrs ( 
+        map (name : {
+            name = "${name}";
+            value = {
+                isNormalUser = true;
+                extraGroups = ["wheel" "docker"];
+                openssh.authorizedKeys.keyFiles = [ 
+                    (builtins.fetchurl "https://github.com/${name}.keys") 
+                ];
+            };
+        }) usernames
+    );
 }

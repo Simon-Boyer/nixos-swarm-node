@@ -7,5 +7,6 @@
         wget
         curl
         docker-compose
+        git
     ];
 }

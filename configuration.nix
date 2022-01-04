@@ -1,7 +1,5 @@
 { config, pkgs, ... }:
 
-let githubUsername = "Simon-Boyer";
-
 {
 
   imports = [
@@ -41,7 +39,7 @@ let githubUsername = "Simon-Boyer";
     };
     openssh = {
         enable = true;
-        services.openssh.passwordAuthentication = false;
+        passwordAuthentication = false;
     };
   };
 
@@ -49,7 +47,7 @@ let githubUsername = "Simon-Boyer";
     autoUpgrade = {
       channel= "https://nixos.org/channels/nixos-21.11";
       enable = true;
-      system.autoUpgrade.allowReboot = true;
+      allowReboot = true;
     };
     stateVersion = "21.11";
   };
@@ -58,7 +56,6 @@ let githubUsername = "Simon-Boyer";
 
   virtualisation.docker = {
     enable = true;
-    socketActivation = true;
     liveRestore = false;
   };
 }
