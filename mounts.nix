@@ -4,7 +4,7 @@ with (import ./node-config.nix);
 with builtins;
 {
 
-    fileSystems =  listToAttrs(
+    fileSystems =  listToAttrs (
       concatLists (
         attrValues (
           mapAttrs (volume : devices: 
@@ -20,6 +20,19 @@ with builtins;
                       }) devices
                     ) cephVolumes
             )
-          )
-        );
+      )
+      ++
+        attrValues (
+          mapAttrs (volume : devices: 
+            {
+                name = "/data/glusterfs/${volume}/shared";
+                value = {
+                  device = "localhost:/${volume}";
+                  fsType = "glusterfs";
+                  options = [ "nofail" ];
+                }; 
+            }
+          ) cephVolumes
+        )
+  );
 }

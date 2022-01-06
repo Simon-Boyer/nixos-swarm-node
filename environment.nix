@@ -27,5 +27,6 @@ with (import ./node-config.nix);
             address = gateway;
             interface = networkInterface;
         };
+        firewall.enable = false;
   };
 }
